@@ -18,6 +18,14 @@ public class Intern {
     @JoinColumn(name = "employee_id", nullable = false, unique = true)
     private Employee employee;
 
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private Manager manager;
+
+    @ManyToOne
+    @JoinColumn(name = "hrbp_id")
+    private Hrbp hrpb;
+
     public Intern() {}
 
     public Intern(Double stipend, Integer durationMonths, Employee employee) {
@@ -52,5 +60,21 @@ public class Intern {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    public Hrbp getHrpb() {
+        return hrpb;
+    }
+
+    public void setHrpb(Hrbp hrpb) {
+        this.hrpb = hrpb;
     }
 }

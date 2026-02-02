@@ -2,6 +2,8 @@ package com.employee.employeemanagement.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "hrbps")
 public class Hrbp {
@@ -15,6 +17,9 @@ public class Hrbp {
     @OneToOne
     @JoinColumn(name = "employee_id", nullable = false, unique = true)
     private Employee employee;
+
+    @OneToMany(mappedBy = "hrbp")
+    private List<Intern> interns;
 
     public Hrbp() {}
 
@@ -42,4 +47,6 @@ public class Hrbp {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+
 }
