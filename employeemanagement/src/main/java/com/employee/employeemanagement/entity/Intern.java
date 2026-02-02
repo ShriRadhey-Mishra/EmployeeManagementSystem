@@ -24,7 +24,7 @@ public class Intern {
 
     @ManyToOne
     @JoinColumn(name = "hrbp_id")
-    private Hrbp hrpb;
+    private Hrbp hrbp;
 
     public Intern() {}
 
@@ -70,11 +70,11 @@ public class Intern {
         this.manager = manager;
     }
 
-    public Hrbp getHrpb() {
-        return hrpb;
+    public Hrbp getHrbp() {
+        return hrbp;
     }
 
-    public void setHrpb(Hrbp hrpb) {
-        this.hrpb = hrpb;
+    public void setHrbp(Hrbp hrbp) {
+        this.hrbp = hrbp;
     }
 }
