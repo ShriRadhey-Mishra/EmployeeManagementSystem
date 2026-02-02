@@ -17,7 +17,7 @@ public class Manager {
     @JoinColumn(name = "employee_id", nullable = false, unique = true)
     private Employee employee;
 
-    @OneToOne(mappedBy = "manager")
+    @OneToMany(mappedBy = "manager")
     private List<Intern> interns;
 
     public Manager() {}
