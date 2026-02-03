@@ -1,8 +1,10 @@
 package com.employee.employeemanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -28,6 +30,18 @@ public class Employee {
     private Double salary;
 
     private LocalDate joiningDate;
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private Employee manager;
+
+    @ManyToOne
+    @JoinColumn(name = "hr_id")
+    private Employee hr;
+
+    @OneToMany(mappedBy = "manager")
+    @JsonIgnore
+    private List<Employee> subordinate;
 
     public Employee() {}
 
@@ -97,5 +111,29 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public Employee getHr() {
+        return hr;
+    }
+
+    public void setHr(Employee hr) {
+        this.hr = hr;
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
+    public List<Employee> getSubordinate() {
+        return subordinate;
+    }
+
+    public void setSubordinate(List<Employee> subordinate) {
+        this.subordinate = subordinate;
     }
 }
