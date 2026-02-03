@@ -1,7 +1,12 @@
 package com.employee.employeemanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,19 +19,24 @@ public class Employee {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Name is required.")
     private String name;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format.")
     private String email;
 
     @Column(unique = true)
     private String phone;
 
     @Column(nullable = false)
+    @NotBlank(message = "Role must be assigned.")
     private String role;
 
     private String department;
 
+    @Positive(message = "Salary must be positive.")
     private Double salary;
 
     private LocalDate joiningDate;
@@ -41,6 +51,8 @@ public class Employee {
 
     @OneToMany(mappedBy = "manager")
     @JsonIgnore
+//    @JsonManagedReference
+//    @JsonBackReference
     private List<Employee> subordinate;
 
     public Employee() {}
