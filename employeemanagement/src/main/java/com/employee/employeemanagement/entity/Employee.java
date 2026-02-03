@@ -17,6 +17,7 @@ public class Employee {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(unique = true)
     private String phone;
 
     @Column(nullable = false)
