@@ -2,10 +2,10 @@ package com.employee.employeemanagement.service;
 
 import com.employee.employeemanagement.entity.Employee;
 import com.employee.employeemanagement.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -21,6 +21,14 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();
+    }
+
+    public List<Employee> getEmployeeByRole(String role) {
+        List<Employee> allEmployee = employeeRepository.findAll();
+
+        return allEmployee.stream()
+                .filter(emp -> emp.getRole().equalsIgnoreCase(role))
+                .collect(Collectors.toList());
     }
 
     public Employee getEmployeeById(Long id) {
