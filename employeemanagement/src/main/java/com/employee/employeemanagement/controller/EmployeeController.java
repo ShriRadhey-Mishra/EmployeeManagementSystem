@@ -49,6 +49,21 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    @PutMapping("/{id}/manager/{managerId}")
+    public Employee assignManager(@PathVariable Long id, @PathVariable Long managerId) {
+        return employeeService.assignManger(id, managerId);
+    }
+
+    @PutMapping("/{id}/hr/{hrId}")
+    public Employee assignHr(@PathVariable Long id, @PathVariable Long hrId) {
+        return employeeService.assignHr(id, hrId);
+    }
+
+    @GetMapping("/{id}/team")
+    public List<Employee> getTeamByManager(@PathVariable Long id) {
+        return employeeService.getTeamByManager(id);
+    }
+
     @DeleteMapping("/{id}")
     public String deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployeeById(id);
