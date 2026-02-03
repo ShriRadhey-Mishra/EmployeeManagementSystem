@@ -3,6 +3,8 @@ package com.employee.employeemanagement.service;
 import com.employee.employeemanagement.entity.Employee;
 import com.employee.employeemanagement.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+
     private final EmployeeRepository employeeRepository;
 
     public EmployeeService(EmployeeRepository employeeRepository) {
@@ -17,6 +21,7 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(Employee employee) {
+        logger.info("Creating employee with email: {}", employee.getEmail());
         return employeeRepository.save(employee);
     }
 
@@ -37,6 +42,7 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById(Long id) {
+        logger.warn("Deleting employee with id: {}", id);
         employeeRepository.deleteById(id);
     }
 
@@ -44,6 +50,7 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new RuntimeException("Employee Not Found!"));
         Employee manager = employeeRepository.findById(managerId).orElseThrow(() -> new RuntimeException("Manager Not Found!"));
         employee.setManager(manager);
+        logger.info("Assigning manager {} to employee {}", managerId, employeeId);
         return employeeRepository.save(employee);
     }
 
@@ -51,6 +58,7 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new RuntimeException("Employee Not Found!"));
         Employee hr = employeeRepository.findById(hrId).orElseThrow(() -> new RuntimeException("HR Not Found!"));
         employee.setHr(hr);
+        logger.info("Assigning hr {} to employee {}", hrId, employeeId);
         return employeeRepository.save(employee);
     }
 
