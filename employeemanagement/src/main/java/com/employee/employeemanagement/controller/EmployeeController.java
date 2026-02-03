@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/employees")
@@ -27,26 +26,22 @@ public class EmployeeController {
 
     @GetMapping("/interns")
     public List<Employee> getAllInterns() {
-        List<Employee> allEmployees = employeeService.getAllEmployee();
-        return allEmployees.stream().filter(emp -> emp.getRole().equalsIgnoreCase("intern")).collect(Collectors.toList());
+        return employeeService.getEmployeeByRole("INTERN");
     }
 
     @GetMapping("/managers")
     public List<Employee> getAllManagers() {
-        List<Employee> allEmployees = employeeService.getAllEmployee();
-        return allEmployees.stream().filter(emp -> emp.getRole().equalsIgnoreCase("manager")).collect(Collectors.toList());
+        return employeeService.getEmployeeByRole("MANAGER");
     }
 
     @GetMapping("/hrs")
     public List<Employee> getAllHrs() {
-        List<Employee> allEmployees = employeeService.getAllEmployee();
-        return allEmployees.stream().filter(emp -> emp.getRole().equalsIgnoreCase("hr")).collect(Collectors.toList());
+        return employeeService.getEmployeeByRole("HR");
     }
 
     @GetMapping("/staff")
     public List<Employee> getAllStaffs() {
-        List<Employee> allEmployees = employeeService.getAllEmployee();
-        return allEmployees.stream().filter(emp -> emp.getRole().equalsIgnoreCase("staff")).collect(Collectors.toList());
+        return employeeService.getEmployeeByRole("STAFF");
     }
 
     @DeleteMapping("/id")
