@@ -4,6 +4,23 @@ It is a REST-based backend application built using Spring Boot, MySQL and JPA/Hi
 
 Project Structure follow a MVC pattern where there are clean and separate boundry between Controller, Service and Repository Layer ensuring loose coupling.
 
+```
+com/
+   └── employee/
+      └── employeemanagement/
+          ├── EmployeeManagementApplication.java
+          ├── controller/
+          │   ├── EmployeeController.java
+          │   └── GreetController.java
+          ├── entity/
+          │   └── Employee.java
+          ├── exception/
+          │   └── GlobalExceptionHandler.java
+          ├── repository/
+          │   └── EmployeeRepository.java
+          └── service/
+              └── EmployeeService.java
+```
 
 ## Features Implemented:
 
