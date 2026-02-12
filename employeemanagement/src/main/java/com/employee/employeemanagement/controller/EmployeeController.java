@@ -77,4 +77,10 @@ public class EmployeeController {
         return "deleted Employee "+id+" successfully";
     }
 
+    @DeleteMapping("/mass-layoff")
+    public String deleteAllEmployees() {
+        employeeService.massLayoff();
+        return "Removed all the employees";
+    }
+
 }

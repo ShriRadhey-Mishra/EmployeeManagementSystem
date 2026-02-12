@@ -51,6 +51,11 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
+    public void massLayoff() {
+        logger.warn("Removing all the work force.");
+        employeeRepository.deleteAll();
+    }
+
     public Employee assignManger(Long employeeId, Long managerId) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new RuntimeException("Employee Not Found!"));
         Employee manager = employeeRepository.findById(managerId).orElseThrow(() -> new RuntimeException("Manager Not Found!"));
