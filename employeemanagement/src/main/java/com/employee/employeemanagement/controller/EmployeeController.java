@@ -20,6 +20,12 @@ public class EmployeeController {
         return employeeService.createEmployee(employee);
     }
 
+    @PostMapping("/bulk-hiring")
+    public List<Employee> createEmployees(@Valid @RequestBody List<Employee> employees) {
+        return
+                employeeService.createEmployees(employees);
+    }
+
     @GetMapping("/")
     public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployee();

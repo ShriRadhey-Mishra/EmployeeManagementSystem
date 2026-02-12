@@ -25,6 +25,11 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    @Transactional
+    public List<Employee> createEmployees(List<Employee> employees) {
+        return employeeRepository.saveAll(employees);
+    }
+
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();
     }
